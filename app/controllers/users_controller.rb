@@ -4,4 +4,12 @@ class UsersController < ApplicationController
     @user = ApiUser.new(@response)
   end
 
+  def index
+    @response = ApiGetter.new("/api/v1/users").get_json
+
+    @users = @response.map do |user_response|
+      ApiUser.new(user_response)
+    end
+  end
+
 end
