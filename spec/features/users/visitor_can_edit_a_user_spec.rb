@@ -5,7 +5,6 @@ feature 'User Edit' do
     scenario 'I navigate to the uer edit page' do
       new_email = 'new_email@email.com'
       VCR.use_cassette("users") do
-
         visit '/users'
       end
 
@@ -15,7 +14,7 @@ feature 'User Edit' do
         end
     end
 
-    VCR.use_cassette('users_post_email_edit') do
+    VCR.use_cassette('users_post_email_edit', :allow_unused_http_interactions => false) do
         fill_in :email, with: new_email
         click_on 'Submit'
 

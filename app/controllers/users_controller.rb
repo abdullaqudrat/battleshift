@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
   def show
-
-    @response = ApiGetter.new("/api/v1/users/#{params[:id]}").get_json
+    @response = ApiGetter.new(:user, params).get_json
     @user = ApiUser.new(@response)
   end
 
   def index
-    @response = ApiGetter.new("/api/v1/users").get_json
-
+    @response = ApiGetter.new(:users).get_json
     @users = @response.map do |user_response|
       ApiUser.new(user_response)
     end
@@ -15,17 +13,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = params[:id]
-    @response = ApiGetter.new("/api/v1/users/#{params[:id]}").get_json
-    @user = ApiUser.new(@response)
   end
 
   def update
-    @response = ApiGetter.new("/api/v1/users/#{params[:id]}", params)
-    @data = @response.get_json
-    @response.update
-    @user = ApiUser.new(@data)
-    flash[:notice] = "Successfully updated #{@user.name}"
-    redirect_to '/users'
-
+    api_interface    = ApiGetter.new(:user, params)
+    raw_user         = api_interface.update_email
+    parsed_user      = api_interface.parse_json(raw_user)
+    flash[:notice] = "Successfully updated #{parsed_user[:name]}"
+    redirect_to users_path
   end
 end

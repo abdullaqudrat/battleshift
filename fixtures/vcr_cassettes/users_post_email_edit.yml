@@ -1,41 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:3000/api/v1/users/1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v0.15.3
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=utf-8
-      Etag:
-      - W/"dd8df56667b12c31948280531e71f87b"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 8efd88d3-3223-42ae-9e5b-295f1aa3a62e
-      X-Runtime:
-      - '0.002847'
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: '{"id":1,"name":"Josiah Bartlet","email":"admin"}'
-    http_version: 
-  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
-- request:
     method: patch
     uri: http://localhost:3000/api/v1/users/1
     body:
@@ -52,20 +17,26 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 204
-      message: No Content
+      code: 200
+      message: OK
     headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"7ebf96f15e0c83a37f4569ef374ee476"
       Cache-Control:
-      - no-cache
+      - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b35b7947-7d2e-42c5-932a-60e3f8ad8478
+      - 4c4247b9-b977-4f24-88f8-c84763094d8d
       X-Runtime:
-      - '0.051089'
+      - '0.004532'
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: UTF-8
-      string: ''
+      string: '{"id":1,"name":"Josiah Bartlet","email":"new_email@email.com"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
+  recorded_at: Wed, 10 Oct 2018 17:12:04 GMT
 - request:
     method: get
     uri: http://localhost:3000/api/v1/users
@@ -91,7 +62,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 1083dd47-dfde-45bc-a7e8-d0a105996315
+      - 1d4604e2-6f4c-4a11-88a0-054f9bae4525
       X-Runtime:
       - '0.002876'
       Transfer-Encoding:
@@ -101,5 +72,5 @@ http_interactions:
       string: '[{"id":2,"name":"Josiah Bartlet","email":"jbarlet@example.com"},{"id":3,"name":"Barney
         Rubble","email":"rubble_man@gmail.com"},{"id":1,"name":"Josiah Bartlet","email":"new_email@email.com"}]'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
+  recorded_at: Wed, 10 Oct 2018 17:12:04 GMT
 recorded_with: VCR 4.0.0

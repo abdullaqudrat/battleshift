@@ -21,18 +21,18 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"dd8df56667b12c31948280531e71f87b"
+      - W/"7ebf96f15e0c83a37f4569ef374ee476"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - fa45fa1f-2138-45f6-9a70-83251999fe71
+      - e2cd22c8-c0da-49ea-883e-4b8a277a8d4a
       X-Runtime:
-      - '0.003047'
+      - '0.003074'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"id":1,"name":"Josiah Bartlet","email":"admin"}'
+      string: '{"id":1,"name":"Josiah Bartlet","email":"new_email@email.com"}'
     http_version: 
-  recorded_at: Wed, 10 Oct 2018 14:37:50 GMT
+  recorded_at: Wed, 10 Oct 2018 17:12:04 GMT
 recorded_with: VCR 4.0.0
