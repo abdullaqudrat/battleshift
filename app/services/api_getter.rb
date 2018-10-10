@@ -13,8 +13,11 @@ class ApiGetter
   end
 
   def conn
-    Faraday.new(url: ENV['path']) do |faraday|
-      faraday.adapter Faraday.default_adapter
-     end
+    Faraday.new(url: ENV['path'])
+  end
+
+  def update
+    email = @params[:email]
+    conn.patch(@path, body = {email: email})
   end
 end

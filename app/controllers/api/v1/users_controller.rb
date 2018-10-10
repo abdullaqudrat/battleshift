@@ -8,6 +8,11 @@ module Api
       def show
         render json: User.find(params[:id])
       end
+
+      def update
+        user = User.find(params[:id])
+        user.update(email: params[:email])
+      end
     end
   end
 end
