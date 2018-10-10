@@ -21,19 +21,19 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"46881d3490aebc043431fd04276285ff"
+      - W/"1007ddb5ad217f20b2776d8b7054f1e8"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - e490fb29-18f6-40c8-9e12-49cada221a8c
+      - 9086647f-b963-4c26-b504-b86eed605890
       X-Runtime:
-      - '0.004845'
+      - '0.003611'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '[{"id":1,"name":"Josiah Bartlet","email":"jbarlet@example.com"},{"id":2,"name":"Josiah
-        Bartlet","email":"jbarlet@example.com"},{"id":3,"name":"Barney Rubble","email":"rubble_man@gmail.com"}]'
+      string: '[{"id":2,"name":"Josiah Bartlet","email":"jbarlet@example.com"},{"id":3,"name":"Barney
+        Rubble","email":"rubble_man@gmail.com"},{"id":1,"name":"Josiah Bartlet","email":"admin"}]'
     http_version: 
-  recorded_at: Tue, 09 Oct 2018 17:52:25 GMT
+  recorded_at: Wed, 10 Oct 2018 14:37:50 GMT
 recorded_with: VCR 4.0.0

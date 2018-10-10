@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"dd8df56667b12c31948280531e71f87b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8efd88d3-3223-42ae-9e5b-295f1aa3a62e
+      X-Runtime:
+      - '0.002847'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":1,"name":"Josiah Bartlet","email":"admin"}'
+    http_version: 
+  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
+- request:
+    method: patch
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: UTF-8
+      string: email=new_email%40email.com
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - b35b7947-7d2e-42c5-932a-60e3f8ad8478
+      X-Runtime:
+      - '0.051089'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d9c429ca3335195bf3902e52e1328607"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 1083dd47-dfde-45bc-a7e8-d0a105996315
+      X-Runtime:
+      - '0.002876'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"id":2,"name":"Josiah Bartlet","email":"jbarlet@example.com"},{"id":3,"name":"Barney
+        Rubble","email":"rubble_man@gmail.com"},{"id":1,"name":"Josiah Bartlet","email":"new_email@email.com"}]'
+    http_version: 
+  recorded_at: Wed, 10 Oct 2018 14:38:27 GMT
+recorded_with: VCR 4.0.0
