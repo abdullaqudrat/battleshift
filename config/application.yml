@@ -4,5 +4,8 @@ development:
 production:
   path: https://frozen-gorge-39153.herokuapp.com/
 
+staging:
+  path: https://battleshift-staging.herokuapp.com/
+
 test:
   path: http://localhost:3000
