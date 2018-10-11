@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def show
     @response = ApiGetter.new(:user, params).get_json
-    @user = ApiUser.new(@response)
+    @user = User.new(@response)
   end
 
   def index
     @response = ApiGetter.new(:users).get_json
     @users = @response.map do |user_response|
-      ApiUser.new(user_response)
+      User.new(user_response)
     end
   end
 
