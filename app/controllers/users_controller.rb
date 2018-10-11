@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def show
-    @response = ApiGetter.new(:user, params).get_json
+    @response = UserApiInterface.new(:user, params).get_json
     @user = User.new(@response)
   end
 
   def index
-    @response = ApiGetter.new(:users).get_json
+    @response = UserApiInterface.new(:users).get_json
     @users = @response.map do |user_response|
       User.new(user_response)
     end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    api_interface    = ApiGetter.new(:user, params)
+    api_interface    = UserApiInterface.new(:user, params)
     raw_user         = api_interface.update_email
     parsed_user      = api_interface.parse_json(raw_user)
     flash[:notice] = "Successfully updated #{parsed_user[:name]}"

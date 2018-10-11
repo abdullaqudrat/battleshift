@@ -1,4 +1,4 @@
-class ApiGetter
+class UserApiInterface
   def initialize(path, params = Hash.new(0))
     @path = path
     @params = params
@@ -18,7 +18,7 @@ class ApiGetter
 
   def update_email
     email = @params[:email]
-    conn.patch(build_path, body = {email: email})
+    conn.patch(build_path, {email: email})
   end
 
   def paths

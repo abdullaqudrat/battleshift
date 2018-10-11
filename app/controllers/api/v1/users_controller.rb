@@ -14,6 +14,10 @@ module Api
         user.update(email: params[:email])
         render json: user
       end
+
+      def create
+
+      end
     end
   end
 end
