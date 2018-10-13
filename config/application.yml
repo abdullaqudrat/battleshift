@@ -1,0 +1,8 @@
+development:
+  path: http://localhost:3000
+
+production:
+  path:
+
+test:
+  path: http://localhost:3000
