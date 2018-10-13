@@ -49,6 +49,7 @@ class ShipPlacer
     if space.occupied?
       raise InvalidShipPlacement.new("Attempting to place ship in a space that is already occupied.")
     else
+      @board.count += 1
       space.occupy!(ship)
     end
   end

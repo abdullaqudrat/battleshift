@@ -1,5 +1,9 @@
 development:
   path: http://localhost:3000
+  BATTLESHIFT_API_KEY: 'abcdefg'
+  BATTLESHIFT_EMAIL: "jbarlet@example.com"
+  BATTLESHIFT_OPPONENT_API_KEY: 'hijklmn'
+  BATTLESHIFT_OPPONENT_EMAIL: "@example.com"
 
 production:
   path:
