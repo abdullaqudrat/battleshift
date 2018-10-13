@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20181013134415) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "active", default: false, null: false
+    t.string "api_key"
   end
 
 end
