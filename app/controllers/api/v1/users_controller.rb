@@ -15,9 +15,6 @@ module Api
         render json: user
       end
 
-      def create
-
-      end
     end
   end
 end
