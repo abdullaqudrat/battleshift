@@ -10,7 +10,12 @@ module Api
                                   start_space: params[:start_space],
                                   end_space: params[:end_space])
 
+          game.current_turn = 'challenger'
+          game.player_1_turns = 0
+          game.player_2_turns = 0
+          
           placer.run
+
           if game.player_1_board.count == 5
             ship_count = 0
           else
@@ -22,7 +27,6 @@ module Api
           elsif game.player_1_board.count == 2
             remaining_ship = 3
           end
-          game.current_turn = 'challenger'
           if ship_count == 1
             message = "Successfully placed ship with a size of #{ship.length}. You have #{ship_count} ship(s) to place with a size of #{remaining_ship}."
           else
