@@ -5,26 +5,29 @@ module Api
         def create
           game = Game.find(params[:game_id])
           ship = Ship.new(params[:ship_size])
-          placer = ShipPlacer.new(board: game.player_1_board,
+          if request.headers["X-API-Key"] == game.player_1_api_key
+            player_board = game.player_1_board
+          else
+            player_board = game.player_2_board
+          end
+          placer = ShipPlacer.new(board: player_board,
                                   ship: ship,
                                   start_space: params[:start_space],
                                   end_space: params[:end_space])
 
           game.current_turn = 'challenger'
-          game.player_1_turns = 0
-          game.player_2_turns = 0
-          
+
           placer.run
 
-          if game.player_1_board.count == 5
+          if player_board.count == 5
             ship_count = 0
           else
             ship_count = 1
           end
 
-          if game.player_1_board.count == 3
+          if player_board.count == 3
             remaining_ship = 2
-          elsif game.player_1_board.count == 2
+          elsif player_board.count == 2
             remaining_ship = 3
           end
           if ship_count == 1
@@ -34,7 +37,6 @@ module Api
           end
           game.save
           render json: game, message: message
-
         end
       end
     end
