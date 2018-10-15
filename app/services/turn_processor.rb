@@ -10,6 +10,11 @@ class TurnProcessor
     begin
       attack_opponent
       # ai_attack_back
+      if @api_key == game.player_1_api_key
+        game.current_turn = "player_2"
+      else
+        game.current_turn = "player_1"
+      end
       game.save!
     rescue InvalidAttack => e
       @messages << e.message

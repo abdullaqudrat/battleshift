@@ -15,7 +15,7 @@ module Api
                                   start_space: params[:start_space],
                                   end_space: params[:end_space])
 
-          game.current_turn = 'challenger'
+          game.current_turn = 'player_1'
 
           placer.run
 
