@@ -3,11 +3,18 @@ class Shooter
     @board     = board
     @target    = target
     @message   = ""
+    @health     = 0
   end
 
   def fire!
     if valid_shot?
-      space.attack!
+      result = space.attack!
+      @board.health -= 1
+      if @board.health == 0
+        result + " Game over."
+      else
+        result
+      end
     else
       raise InvalidAttack.new("Invalid coordinates.")
     end
