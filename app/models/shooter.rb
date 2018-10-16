@@ -3,7 +3,7 @@ class Shooter
     @board     = board
     @target    = target
     @message   = ""
-    @health     = 0
+    @health     = 5
   end
 
   def fire!

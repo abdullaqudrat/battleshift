@@ -31,7 +31,7 @@ game_attributes = {
   player_2_board: player_2_board,
   player_1_turns: 0,
   player_2_turns: 0,
-  current_turn: "challenger"
+  current_turn: "player_1"
 }
 
 game = Game.new(game_attributes)
@@ -40,3 +40,5 @@ game.save!
 User.create!(name: "Josiah Bartlet", email: "jbarlet@example.com", address: "1600 Pennsylvania Ave NW, Washington, DC 20500", password: '1234', api_key: 'abcdefg')
 User.create!(name: "Barney Rubble", email: "@example.com", address: "1600 Pennsylvania Ave NW, Washington, DC 20500", password: '1234', api_key: 'hijklmn')
 
+User.create!(name: "player_1", email: "hello@example.com", address: "1600 Pennsylvania Ave NW, Washington, DC 20500", password: '1234', api_key: 'evyiYMExhwCS15JmBM7dkRjq')
+User.create!(name: "player_2", email: "opponent@example.com", address: "1600 Pennsylvania Ave NW, Washington, DC 20500", password: '1234', api_key: 'cezhzkVCEzUP1zzvubCGMWiF')
