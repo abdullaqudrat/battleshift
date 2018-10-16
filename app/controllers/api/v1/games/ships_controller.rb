@@ -5,12 +5,13 @@ module Api
         def create
           game = Game.find(params[:game_id])
           ship = Ship.new(params[:ship_size])
-          if request.headers["X-API-Key"] == game.player_1_api_key
-            player_board = game.player_1_board
-          else
-            player_board = game.player_2_board
-          end
-          placer = ShipPlacer.new(board: player_board,
+          player = PlayerSelector.new(request.headers["X-API-Key"], game)
+          # if request.headers["X-API-Key"] == game.player_1_api_key
+          #   player.assets[:board] = game.player_1_board
+          # else
+          #   player.assets[:board] = game.player_2_board
+          # end
+          placer = ShipPlacer.new(board: player.assets[:board],
                                   ship: ship,
                                   start_space: params[:start_space],
                                   end_space: params[:end_space])
@@ -19,15 +20,15 @@ module Api
 
           placer.run
 
-          if player_board.count == 5
+          if player.assets[:board].count == 5
             ship_count = 0
           else
             ship_count = 1
           end
 
-          if player_board.count == 3
+          if player.assets[:board].count == 3
             remaining_ship = 2
-          elsif player_board.count == 2
+          elsif player.assets[:board].count == 2
             remaining_ship = 3
           end
           if ship_count == 1

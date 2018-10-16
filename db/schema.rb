@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20181013134415) do
     t.integer "player_2_turns", default: 0
     t.integer "current_turn"
     t.string "player_1_api_key"
+    t.string "player_2_api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

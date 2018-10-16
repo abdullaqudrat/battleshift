@@ -8,6 +8,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.integer :player_2_turns, default: 0
       t.integer :current_turn
       t.string :player_1_api_key
+      t.string :player_2_api_key
       t.timestamps
     end
   end
