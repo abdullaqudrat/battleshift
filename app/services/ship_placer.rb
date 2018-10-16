@@ -16,6 +16,32 @@ class ShipPlacer
     end
   end
 
+  def calculate_ship_count
+    if @board.count == 5
+      ship_count = 0
+    else
+      ship_count = 1
+    end
+  end
+
+  def calculate_remaining_ship_size
+    if @board.count == 3
+      remaining_ship = 2
+    elsif @board.count == 2
+      remaining_ship = 3
+    end
+  end
+
+
+  def gen_message
+    if calculate_ship_count == 1
+      message = "Successfully placed ship with a size of #{@ship.length}. You have #{calculate_ship_count} ship(s) to place with a size of #{calculate_remaining_ship_size}."
+    else
+      message = "Successfully placed ship with a size of #{@ship.length}. You have 0 ship(s) to place."
+    end
+  end
+
+
   private
   attr_reader :board, :ship,
     :start_space, :end_space
@@ -49,6 +75,7 @@ class ShipPlacer
     if space.occupied?
       raise InvalidShipPlacement.new("Attempting to place ship in a space that is already occupied.")
     else
+      @board.count += 1
       space.occupy!(ship)
     end
   end
