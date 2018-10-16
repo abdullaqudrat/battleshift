@@ -5,6 +5,7 @@ module Api
         def create
           game = Game.find(params[:game_id])
           user = User.find_by(api_key: request.headers["X-API-Key"])
+          player = PlayerSelector.new(request.headers["X-API-Key"], game)
           if game.winner.nil?
             if game.current_turn == "player_1" && request.headers["X-API-Key"] == game.player_1_api_key
               turn_processor = TurnProcessor.new(game, params[:shot][:target], request.headers["X-API-Key"])
