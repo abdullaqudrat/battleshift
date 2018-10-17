@@ -27,19 +27,24 @@ class PlayerSelector
   end
 
   def current_player_api
-    if @game.current_turn == "player_1"
+    if @game.current_turn == "player_1" && @api_key == @game.player_1_api_key
       @game.player_1_api_key
-    else
+    elsif @game.current_turn == "player_2" && @api_key == @game.player_2_api_key
       @game.player_2_api_key
+    else
+      nil
     end
   end
 
   def opponent_health
     if @game.current_turn == "player_1"
       @game.player_2_board.health
-    else
+    elsif @game.current_turn == "player_2"
       @game.player_1_board.health
     end
   end
 
+  def valid_player?
+    @api_key == @game.player_1_api_key || @api_key == @game.player_2_api_key
+  end
 end

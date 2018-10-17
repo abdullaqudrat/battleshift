@@ -1,15 +1,16 @@
 class TurnProcessor
+  attr_reader :message
   def initialize(game, target, api_key)
     @game   = game
     @target = target
-    @messages = []
+    @message = {}
     @api_key = api_key
+    @player_selector = PlayerSelector.new(api_key, game).assets
   end
 
   def run!
     begin
       attack_opponent
-      # ai_attack_back
       if @api_key == game.player_1_api_key
         game.current_turn = "player_2"
       else
@@ -17,49 +18,30 @@ class TurnProcessor
       end
       game.save!
     rescue InvalidAttack => e
-      @messages << e.message
+      @message = {json: game, message: e.message, status: 400 }
+      #@messages << e.message
     end
   end
 
-  def message
-    @messages.join(" ")
+  def winner?
+    if @player_selector[:board].health == 0
+      game.winner = User.find_by(api_key: @api_key ).email
+      game.save!
+    end
   end
+
+  #def message
+  #  @messages.join(" ")
+  #end
 
   private
 
   attr_reader :game, :target
 
-  def player_selector
-    player = {}
-    if @api_key == game.player_1_api_key
-      player[:board] = game.player_2_board
-      player[:turns] = game.player_1_turns
-
-    else
-      player[:board] = game.player_1_board
-      player[:turns] = game.player_2_turns
-    end
-    player
-  end
-
   def attack_opponent
-    result = Shooter.fire!(board: player_selector[:board], target: target)
-    @messages << "Your shot resulted in a #{result}."
-    player_selector[:turns] += 1
+    result = Shooter.fire!(board: @player_selector[:board], target: target)
+    @message = {json: game, message: "Your shot resulted in a #{result}."}
+    #@messages << "Your shot resulted in a #{result}."
+    @player_selector[:turns] += 1
   end
-
-  def ai_attack_back
-    result = AiSpaceSelector.new(player.board).fire!
-    @messages << "The computer's shot resulted in a #{result}."
-    game.player_2_turns += 1
-  end
-
-  def player
-    Player.new(game.player_1_board)
-  end
-
-  def opponent
-    Player.new(game.player_2_board)
-  end
-
 end

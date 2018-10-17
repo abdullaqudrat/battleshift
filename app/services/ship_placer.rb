@@ -32,7 +32,6 @@ class ShipPlacer
     end
   end
 
-
   def gen_message
     if calculate_ship_count == 1
       message = "Successfully placed ship with a size of #{@ship.length}. You have #{calculate_ship_count} ship(s) to place with a size of #{calculate_remaining_ship_size}."
@@ -40,7 +39,6 @@ class ShipPlacer
       message = "Successfully placed ship with a size of #{@ship.length}. You have 0 ship(s) to place."
     end
   end
-
 
   private
   attr_reader :board, :ship,
