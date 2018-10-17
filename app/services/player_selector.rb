@@ -1,4 +1,5 @@
 class PlayerSelector
+  attr_reader :api_key
 
   def initialize(api_key, game)
     @api_key = api_key
@@ -9,15 +10,15 @@ class PlayerSelector
   def assets
     player = {}
     if @api_key == @game.player_1_api_key
-      player[:board] = @game.player_2_board
-      player[:turns] = @game.player_1_turns
+
+      player = { board: @game.player_2_board,
+                 turns: @game.player_1_turns }
     elsif @api_key == @game.player_2_api_key
-      player[:board] = @game.player_1_board
-      player[:turns] = @game.player_2_turns
+      player = { board: @game.player_1_board,
+                 turns: @game.player_2_turns }
     else
-      player[:message] = "Invalid Auth"
+      player = { message:  "Invalid Auth" }
     end
-    player
   end
 
   def api_setter(api_key)

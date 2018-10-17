@@ -1,32 +1,39 @@
 class TurnProcessor
   attr_reader :message
-  def initialize(game, target, player)
+  def initialize(game, target, api_key)
     @game   = game
     @target = target
     @message = {}
-    @api_key = player.current_player_api
-    @player_selector = PlayerSelector.new(@api_key, game).assets
+    @player = PlayerSelector.new(api_key, game)
     return self if invalid_turn
     run!
-    winner?
   end
+
+  private
+
+  attr_reader :game, :target
 
   def run!
     begin
       attack_opponent
-      if @api_key == game.player_1_api_key
-        game.current_turn = "player_2"
-      else
-        game.current_turn = "player_1"
-      end
-      game.save!
+      set_current_turn
+      check_for_winner
     rescue InvalidAttack => e
       @message = {json: game, message: e.message, status: 400 }
     end
     self
   end
 
-  def winner?
+  def set_current_turn
+    if @player.current_player_api == game.player_1_api_key
+      game.current_turn = "player_2"
+    else
+      game.current_turn = "player_1"
+    end
+    game.save!
+  end
+
+  def check_for_winner
     if game.winner.nil?
       set_winner
     else
@@ -37,7 +44,7 @@ class TurnProcessor
   end
 
   def invalid_turn
-    if @api_key.nil?
+    if @player.current_player_api.nil?
       @message = { json: game,
                    status: 400,
                    message: "Invalid move. It's your opponent's turn"}
@@ -46,19 +53,15 @@ class TurnProcessor
   end
 
   def set_winner
-    if @player_selector[:board].health == 0
-      game.winner = User.find_by(api_key: @api_key ).email
+    if @player.assets[:board].health == 0
+      game.winner = User.find_by(api_key: @player.api_key ).email
       game.save!
     end
   end
 
-  private
-
-  attr_reader :game, :target
-
   def attack_opponent
-    result = Shooter.fire!(board: @player_selector[:board], target: target)
+    result = Shooter.fire!(board: @player.assets[:board], target: target)
     @message = {json: game, message: "Your shot resulted in a #{result}."}
-    @player_selector[:turns] += 1
+    @player.assets[:turns] += 1
   end
 end
