@@ -26,6 +26,17 @@ class TurnProcessor
   end
 
   def winner?
+    if game.winner.nil?
+      set_winner
+    else
+      @message = { json: game,
+                   status: 400,
+                   message: "Invalid move. Game over." }
+    end
+
+  end
+
+  def set_winner
     if @player_selector[:board].health == 0
       game.winner = User.find_by(api_key: @api_key ).email
       game.save!
