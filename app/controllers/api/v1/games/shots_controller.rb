@@ -10,8 +10,6 @@ module Api
           render json: game, status: 400, message: "Invalid move. It's your opponent's turn" and return if player.current_player_api.nil?
 
           turn_processor = TurnProcessor.new(game, params[:shot][:target], player.current_player_api)
-          turn_processor.run!
-          turn_processor.winner?
 
           render turn_processor.message
         end

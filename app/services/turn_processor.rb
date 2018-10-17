@@ -6,6 +6,8 @@ class TurnProcessor
     @message = {}
     @api_key = api_key
     @player_selector = PlayerSelector.new(api_key, game).assets
+    run!
+    winner?
   end
 
   def run!
@@ -19,8 +21,8 @@ class TurnProcessor
       game.save!
     rescue InvalidAttack => e
       @message = {json: game, message: e.message, status: 400 }
-      #@messages << e.message
     end
+    self
   end
 
   def winner?
@@ -30,10 +32,6 @@ class TurnProcessor
     end
   end
 
-  #def message
-  #  @messages.join(" ")
-  #end
-
   private
 
   attr_reader :game, :target
@@ -41,7 +39,6 @@ class TurnProcessor
   def attack_opponent
     result = Shooter.fire!(board: @player_selector[:board], target: target)
     @message = {json: game, message: "Your shot resulted in a #{result}."}
-    #@messages << "Your shot resulted in a #{result}."
     @player_selector[:turns] += 1
   end
 end
