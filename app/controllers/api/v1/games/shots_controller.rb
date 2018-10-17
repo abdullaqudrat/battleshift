@@ -5,9 +5,7 @@ module Api
         def create
           game = Game.find(params[:game_id])
           player = PlayerSelector.new(request.headers["X-API-Key"], game)
-
-          render TurnProcessor.new(game, params[:shot][:target], player.current_player_api, player).message
-
+          render TurnProcessor.new(game, params[:shot][:target], player).message
         end
       end
     end

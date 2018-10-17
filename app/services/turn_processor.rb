@@ -1,17 +1,12 @@
 class TurnProcessor
   attr_reader :message
-  def initialize(game, target, api_key, player)
+  def initialize(game, target, player)
     @game   = game
     @target = target
     @message = {}
-    @api_key = api_key
-    @player_selector = PlayerSelector.new(api_key, game).assets
-    if api_key.nil?
-      @message = { json: game,
-                   status: 400,
-                   message: "Invalid move. It's your opponent's turn" }
-      return self
-    end
+    @api_key = player.current_player_api
+    @player_selector = PlayerSelector.new(@api_key, game).assets
+    return self if invalid_turn
     run!
     winner?
   end
@@ -41,14 +36,13 @@ class TurnProcessor
     end
   end
 
-  def correct_turn?
-    if @player.current_player_api.nil?
+  def invalid_turn
+    if @api_key.nil?
       @message = { json: game,
                    status: 400,
                    message: "Invalid move. It's your opponent's turn"}
-      false
+      true
     end
-    true
   end
 
   def set_winner
