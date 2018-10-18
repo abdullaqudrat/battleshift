@@ -4,7 +4,6 @@ class PlayerSelector
   def initialize(api_key, game)
     @api_key = api_key
     @game = game
-    api_setter(api_key)
   end
 
   def assets
