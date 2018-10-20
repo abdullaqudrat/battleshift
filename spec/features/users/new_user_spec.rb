@@ -19,6 +19,20 @@ describe 'New User Creation' do
       expect(page).to have_content('Logged in as Peter')
       expect(page).to have_content("This account has not yet been activated. Please check your email.")
     end
+    scenario 'I should be able to fail to create a new user' do
+      visit '/'
+
+      click_on 'Register'
+
+      expect(current_path).to eq('/register')
+
+      fill_in 'user[name]', with: 'Peter'
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
+      click_on 'Submit'
+
+      expect(page).to_not have_content('Logged in as Peter')
+    end
     scenario 'I should be able to activate account after registration email sent' do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)

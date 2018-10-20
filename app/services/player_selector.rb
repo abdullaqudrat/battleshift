@@ -20,12 +20,6 @@ class PlayerSelector
     end
   end
 
-  def api_setter(api_key)
-    if api_key != @game.player_1_api_key && @game.player_2_api_key.nil?
-      @game.player_2_api_key = api_key
-    end
-  end
-
   def current_player_api
     if @game.current_turn == "player_1" && @api_key == @game.player_1_api_key
       @game.player_1_api_key
