@@ -16,9 +16,16 @@ describe 'TurnProcessor Selector' do
     processor = TurnProcessor.new(@game, 'A1', @player_1_api)
     expect(processor.message[:message]).to eq("Your shot resulted in a Miss.")
   end
-  it 'should not process invalid turns' do
+  it 'should not process invalid coordinates' do
     @game.current_turn = 'player_2'
     processor = TurnProcessor.new(@game, 'z1', @player_2_api)
     expect(processor.message[:message]).to eq("Invalid coordinates.")
+  end
+  it 'should not process invalid turns' do
+    @game.current_turn = 'player_2'
+    allow_any_instance_of(PlayerSelector).to receive(:current_player_api).and_return(nil)
+
+    processor = TurnProcessor.new(@game, 'z1', @player_2_api)
+    expect(processor.message[:message]).to eq("Invalid move. It's your opponent's turn")
   end
 end
