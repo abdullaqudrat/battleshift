@@ -64,10 +64,4 @@ class TurnProcessor
     @message = {json: game, message: "Your shot resulted in a #{result}."}
     @player.assets[:turns] += 1
   end
-
-  def valid_players(api_key)
-    unless api_key == @game.player_1_api_key || api_key == @game.player_2_api_key
-      @message = {json: game, status: 401, message: "Unauthorized"}
-    end
-  end
 end

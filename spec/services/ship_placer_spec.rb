@@ -12,6 +12,41 @@ describe ShipPlacer do
     expect(subject).to be_a ShipPlacer
   end
 
+  it 'calculates ship count' do
+    expect(subject.calculate_ship_count).to eq(1)
+  end
+  it 'generates a message' do
+    expect(subject.gen_message).to eq("Successfully placed ship with a size of 2. You have 1 ship(s) to place with a size of .")
+  end
+
+  it 'calculates max ship count' do
+    new_board = Board.new(4)
+    two_ship = Ship.new(2)
+    three_ship = Ship.new(3)
+    ship_placer_first = ShipPlacer.new(board: new_board, ship: three_ship, start_space: 'A1', end_space: 'A3')
+    ship_placer_first.run
+    ship_placer_second = ShipPlacer.new(board: new_board, ship: two_ship, start_space: 'B1', end_space: 'B2')
+    ship_placer_second.run
+
+    expect(ship_placer_second.calculate_ship_count).to eq(0)
+    expect(ship_placer_second.gen_message).to eq("Successfully placed ship with a size of 2. You have 0 ship(s) to place.")
+  end
+  it 'calculates remaining ship count' do
+    new_board = Board.new(4)
+    two_ship = Ship.new(2)
+    ship_placer_second = ShipPlacer.new(board: new_board, ship: two_ship, start_space: 'B1', end_space: 'B2')
+    ship_placer_second.run
+
+    expect(ship_placer_second.calculate_remaining_ship_size).to eq(3)
+  end
+  it 'calculates remaining ship count for big ships' do
+    new_board = Board.new(4)
+    two_ship = Ship.new(3)
+    ship_placer_second = ShipPlacer.new(board: new_board, ship: two_ship, start_space: 'B1', end_space: 'B3')
+    ship_placer_second.run
+
+    expect(ship_placer_second.calculate_remaining_ship_size).to eq(2)
+  end
   it "places the ship within a row with empty spaces" do
     a1 = board.locate_space("A1")
     a2 = board.locate_space("A2")
