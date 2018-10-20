@@ -22,8 +22,8 @@ class UserApiInterface
   end
 
   def paths
-    {user: "/api/v1/users/#{@params[:id]}",
-     users: "/api/v1/users"
+    {user: "api/v1/users/#{@params[:id]}",
+     users: "api/v1/users"
     }
   end
 

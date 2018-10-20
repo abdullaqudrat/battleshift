@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/api/v1/games
+    body:
+      encoding: UTF-8
+      string: '{"opponent_email":"opponent@example.com"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      X-Api-Key:
+      - evyiYMExhwCS15JmBM7dkRjq
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"19237c1b515e575d2ee455bb52dceaa0"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6424c64e-7b80-4d14-9f4c-1146e2cabe7a
+      X-Runtime:
+      - '0.046886'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":15,"message":null,"current_turn":"player_1","player_1_board":{"rows":[{"name":"row_a","data":[{"coordinates":"A1","status":"Not
+        Attacked"},{"coordinates":"A2","status":"Not Attacked"},{"coordinates":"A3","status":"Not
+        Attacked"},{"coordinates":"A4","status":"Not Attacked"}]},{"name":"row_b","data":[{"coordinates":"B1","status":"Not
+        Attacked"},{"coordinates":"B2","status":"Not Attacked"},{"coordinates":"B3","status":"Not
+        Attacked"},{"coordinates":"B4","status":"Not Attacked"}]},{"name":"row_c","data":[{"coordinates":"C1","status":"Not
+        Attacked"},{"coordinates":"C2","status":"Not Attacked"},{"coordinates":"C3","status":"Not
+        Attacked"},{"coordinates":"C4","status":"Not Attacked"}]},{"name":"row_d","data":[{"coordinates":"D1","status":"Not
+        Attacked"},{"coordinates":"D2","status":"Not Attacked"},{"coordinates":"D3","status":"Not
+        Attacked"},{"coordinates":"D4","status":"Not Attacked"}]}]},"player_2_board":{"rows":[{"name":"row_a","data":[{"coordinates":"A1","status":"Not
+        Attacked"},{"coordinates":"A2","status":"Not Attacked"},{"coordinates":"A3","status":"Not
+        Attacked"},{"coordinates":"A4","status":"Not Attacked"}]},{"name":"row_b","data":[{"coordinates":"B1","status":"Not
+        Attacked"},{"coordinates":"B2","status":"Not Attacked"},{"coordinates":"B3","status":"Not
+        Attacked"},{"coordinates":"B4","status":"Not Attacked"}]},{"name":"row_c","data":[{"coordinates":"C1","status":"Not
+        Attacked"},{"coordinates":"C2","status":"Not Attacked"},{"coordinates":"C3","status":"Not
+        Attacked"},{"coordinates":"C4","status":"Not Attacked"}]},{"name":"row_d","data":[{"coordinates":"D1","status":"Not
+        Attacked"},{"coordinates":"D2","status":"Not Attacked"},{"coordinates":"D3","status":"Not
+        Attacked"},{"coordinates":"D4","status":"Not Attacked"}]}]},"winner":null}'
+    http_version: 
+  recorded_at: Sat, 20 Oct 2018 04:56:17 GMT
+recorded_with: VCR 4.0.0

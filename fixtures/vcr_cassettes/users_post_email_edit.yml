@@ -27,16 +27,16 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 8854b3eb-2ca5-48bc-ba72-52bd988a1e39
+      - d09556c1-5ffa-4f44-9908-6f1b62252c4e
       X-Runtime:
-      - '0.022368'
+      - '0.011650'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"id":1,"name":"Josiah Bartlet","email":"new_email@email.com"}'
     http_version: 
-  recorded_at: Mon, 15 Oct 2018 14:54:46 GMT
+  recorded_at: Sat, 20 Oct 2018 04:55:32 GMT
 - request:
     method: get
     uri: http://localhost:3000/api/v1/users
@@ -58,19 +58,19 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"773bbcbf99e4a2f0554f71a05971b4f9"
+      - W/"bfc9d8ada88ad22a68e8333071c3ad43"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 9b0eceec-ebae-4875-a802-96cc950484fe
+      - 9ea1c1b8-929f-4582-bf8c-638fcac0ec46
       X-Runtime:
-      - '0.002739'
+      - '0.003847'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '[{"id":2,"name":"Barney Rubble","email":"@example.com"},{"id":1,"name":"Josiah
+      string: '[{"id":2,"name":"Barney Rubble","email":"@example.com"},{"id":3,"name":"player_1","email":"hello@example.com"},{"id":4,"name":"player_2","email":"opponent@example.com"},{"id":5,"name":"a","email":"a"},{"id":6,"name":"b","email":"b"},{"id":7,"name":"c","email":"c"},{"id":8,"name":"d","email":"d"},{"id":1,"name":"Josiah
         Bartlet","email":"new_email@email.com"}]'
     http_version: 
-  recorded_at: Mon, 15 Oct 2018 14:54:46 GMT
+  recorded_at: Sat, 20 Oct 2018 04:55:32 GMT
 recorded_with: VCR 4.0.0
