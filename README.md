@@ -1,24 +1,14 @@
-# README
+# battleshift
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Battleshift is an api interface to play the game battleshift built in Ruby on Rails. 
 
-Things you may want to cover:
+This project was a 'brown field' project where we inherited an existing code base for a one player game with no external interface and no win condition validations. We built the API interface, win validation, and two player functionality while fixing and improving the existing code base. We found that a large percentage of the code base was untested and unused, we removed any code that was not necessary and wrote tests for the existing code base. Testing went from 30% to 90%+.
 
-* Ruby version
+This project also used a [spec harness](https://github.com/turingschool-examples/battleshift_spec_harness) for evaluation. 
 
-* System dependencies
+## to run locally
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. clone the repo
+2. bundle `bundle && bundle update`
+3. create the database `rake db:{create,migrate,seed}`
+4. start rails `rails s`
